@@ -42,7 +42,7 @@ namespace ICSharpCode.Decompiler.CSharp.Transforms
 			
 			node.AcceptVisitor(visitor);
 
-			visitor.RemoveSingleEmptyConstructor(node.Children, context.CurrentTypeDefinition);
+			//visitor.RemoveSingleEmptyConstructor(node.Children, context.CurrentTypeDefinition);
 		}
 	}
 	
@@ -76,10 +76,10 @@ namespace ICSharpCode.Decompiler.CSharp.Transforms
 				// Move arguments from invocation to initializer:
 				invocation.Arguments.MoveTo(ci.Arguments);
 				// Add the initializer: (unless it is the default 'base()')
-				if (!(ci.ConstructorInitializerType == ConstructorInitializerType.Base && ci.Arguments.Count == 0))
-					constructorDeclaration.Initializer = ci.CopyAnnotationsFrom(invocation);
+				//if (!(ci.ConstructorInitializerType == ConstructorInitializerType.Base && ci.Arguments.Count == 0))
+					//constructorDeclaration.Initializer = ci.CopyAnnotationsFrom(invocation);
 				// Remove the statement:
-				stmt.Remove();
+				//stmt.Remove();
 			}
 		}
 		
@@ -108,7 +108,7 @@ namespace ICSharpCode.Decompiler.CSharp.Transforms
 			base.VisitTypeDeclaration(typeDeclaration);
 			
 			// Remove single empty constructor:
-			RemoveSingleEmptyConstructor(typeDeclaration.Members, (ITypeDefinition)typeDeclaration.GetSymbol());
+			// RemoveSingleEmptyConstructor(typeDeclaration.Members, (ITypeDefinition)typeDeclaration.GetSymbol());
 			
 			// Handle initializers on static fields:
 			HandleStaticFieldInitializers(typeDeclaration.Members);
